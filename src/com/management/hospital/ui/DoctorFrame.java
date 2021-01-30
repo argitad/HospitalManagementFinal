@@ -55,7 +55,8 @@ public class DoctorFrame extends JFrame  {
 		});
 	}
 	
-	 Connection connection= null;
+	 Connection connection= null;   //initializes the connection with the database
+	 
 	 private JTable doctorTable;
 	 DefaultTableModel dm;
 	 private JTextField textField;
@@ -67,30 +68,21 @@ public class DoctorFrame extends JFrame  {
 	 */
 	public DoctorFrame() {
 		initialize1();
-		connection= GuiConnection.setGuiConnection();
-		
-
+		connection= GuiConnection.setGuiConnection();   //creates the connection with the database
 	
 	}
 	
 
-	
-
-
-	
-	
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	public void initialize1() {
 		frame1 = new JFrame();
+		frame1.getContentPane().setBackground(new Color(176, 196, 222));
 		frame1.setBounds(100, 100, 692, 382);
 		frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame1.getContentPane().setLayout(null);
 	
-	
-		
-		
 		JLabel doctorHeaderLabel = new JLabel("Doctor's Profile");
 		doctorHeaderLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		doctorHeaderLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 20));
@@ -161,10 +153,8 @@ public class DoctorFrame extends JFrame  {
         scrollPane.setViewportView(doctorTable);
 		doctorTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
-		
-		
-		
-		JButton doctorInsertButton = new JButton("INSERT");
+		//Create buttons and add ActionListeners
+		JButton doctorInsertButton = new JButton("Add");
 		doctorInsertButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
                    try {
@@ -194,7 +184,7 @@ public class DoctorFrame extends JFrame  {
 		
 		
 		
-		JButton doctorUpdateButton = new JButton("UPDATE");
+		JButton doctorUpdateButton = new JButton("Edit");
 		doctorUpdateButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -221,7 +211,7 @@ public class DoctorFrame extends JFrame  {
 		doctorUpdateButton.setBounds(289, 277, 89, 23);
 		frame1.getContentPane().add(doctorUpdateButton);
 		
-		JButton doctorDeleteButton = new JButton("DELETE");
+		JButton doctorDeleteButton = new JButton("Delete");
 		doctorDeleteButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
                     try {
@@ -245,11 +235,11 @@ public class DoctorFrame extends JFrame  {
 		doctorDeleteButton.setBounds(453, 277, 89, 23);
 		frame1.getContentPane().add(doctorDeleteButton);
 		
-		JButton doctorPreviousButton = new JButton("Previous");
+		JButton doctorPreviousButton = new JButton("BACK");
 		doctorPreviousButton.setBounds(17, 309, 89, 23);
 		frame1.getContentPane().add(doctorPreviousButton);
 		
-		JButton doctorNextButton = new JButton("Next");
+		JButton doctorNextButton = new JButton("NEXT");
 		doctorNextButton.setBounds(563, 309, 89, 23);
 		frame1.getContentPane().add(doctorNextButton);
 		
@@ -277,7 +267,9 @@ public class DoctorFrame extends JFrame  {
 		doctorPreviousButton.addActionListener(new ActionListener(){
 			
 			public void actionPerformed(java.awt.event.ActionEvent evt){ 
-				dispose();
+				
+				frame1.setVisible(false);
+				
 				WelcomeFrame window = new WelcomeFrame();
 				window.frame.setVisible(true);
 				
@@ -286,6 +278,9 @@ public class DoctorFrame extends JFrame  {
 		
 		doctorNextButton.addActionListener(new ActionListener(){ 
 			public void actionPerformed(java.awt.event.ActionEvent evt){ 
+				
+				frame1.setVisible(false);
+				
 				LaboratoryFrame window2 = new LaboratoryFrame();
 				window2.frame2.setVisible(true);
 			        }

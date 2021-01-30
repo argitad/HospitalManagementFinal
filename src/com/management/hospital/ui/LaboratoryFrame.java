@@ -18,17 +18,19 @@ import java.util.Date;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+import java.awt.Color;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
 
 public class LaboratoryFrame {
 
 	JFrame frame2;
 	private JTextField labNumberTextField;
 	private JTextField labPatientTextField;
+	private JTextField doctorIdTextField;
+	 
+	Connection connection= null;  //initializes the connection with the database
 	
-	 Connection connection= null;
-	 private JTextField doctorIdTextField;
-
-
 	/**
 	 * Launch the application.
 	 */
@@ -50,7 +52,7 @@ public class LaboratoryFrame {
 	 */
 	public LaboratoryFrame() {
 		initialize2();
-		connection= GuiConnection.setGuiConnection();
+		connection= GuiConnection.setGuiConnection();   //creates the connection with the database
 
 	}
 
@@ -59,6 +61,7 @@ public class LaboratoryFrame {
 	 */
 	private void initialize2() {
 		frame2 = new JFrame();
+		frame2.getContentPane().setBackground(new Color(176, 196, 222));
 		frame2.setBounds(100, 100, 464, 361);
 		frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame2.getContentPane().setLayout(null);
@@ -113,11 +116,12 @@ public class LaboratoryFrame {
 		labDayDateChooser.setBounds(148, 177, 110, 20);
 		frame2.getContentPane().add(labDayDateChooser);
 		
-		JButton labPreviousButton = new JButton("Previous");
-		labPreviousButton.setBounds(10, 262, 89, 23);
+		//Create buttons and add ActionListeners
+		JButton labPreviousButton = new JButton("BACK");
+		labPreviousButton.setBounds(10, 271, 89, 23);
 		frame2.getContentPane().add(labPreviousButton);
 		
-		JButton labInsertButton = new JButton("INSERT");
+		JButton labInsertButton = new JButton("Add");
 		labInsertButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				 try {
@@ -143,7 +147,7 @@ public class LaboratoryFrame {
 		labInsertButton.setBounds(194, 226, 89, 23);
 		frame2.getContentPane().add(labInsertButton);
 		
-		JButton labUpdateButton = new JButton("UPDATE");
+		JButton labUpdateButton = new JButton("Edit");
 		labUpdateButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -168,12 +172,11 @@ public class LaboratoryFrame {
 		frame2.getContentPane().add(labUpdateButton);
 
 		
-
-		
-
-		
 		labPreviousButton.addActionListener(new ActionListener(){ 
 			public void actionPerformed(java.awt.event.ActionEvent evt){ 
+				
+				frame2.setVisible(false);
+				
 				DoctorFrame window1 = new DoctorFrame();
 				window1.frame1.setVisible(true);
 			        }

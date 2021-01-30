@@ -19,6 +19,7 @@ import javax.swing.SwingConstants;
 import net.proteanit.sql.DbUtils;
 
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class BillFrame {
 
@@ -28,11 +29,11 @@ public class BillFrame {
 	private JTextField roomChargeTextField;
 	private JTextField noOfDaysTextField;
 	private JTextField billLabChargeTextField;
+    private JTextField patientIdTextField;
+	 
+	 Connection connection= null;    //initializes the connection with the database
 	
-	 Connection connection= null;
-	 private JTextField patientIdTextField;
-
-	/**
+	 /**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
@@ -53,7 +54,7 @@ public class BillFrame {
 	 */
 	public BillFrame() {
 		initialize5();
-		connection= GuiConnection.setGuiConnection();
+		connection= GuiConnection.setGuiConnection();   //creates the connection with the database
 	}
 
 	/**
@@ -61,6 +62,7 @@ public class BillFrame {
 	 */
 	private void initialize5() {
 		frame5 = new JFrame();
+		frame5.getContentPane().setBackground(new Color(176, 196, 222));
 		frame5.setBounds(100, 100, 464, 361);
 		frame5.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame5.getContentPane().setLayout(null);
@@ -131,7 +133,8 @@ public class BillFrame {
 		frame5.getContentPane().add(noOfDaysTextField);
 		noOfDaysTextField.setColumns(10);
 		
-		JButton billInsertButton = new JButton("INSERT");
+		//Create buttons and add ActionListeners
+		JButton billInsertButton = new JButton("Add");
 		billInsertButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				 try {
@@ -159,7 +162,7 @@ public class BillFrame {
 		billInsertButton.setBounds(117, 232, 89, 23);
 		frame5.getContentPane().add(billInsertButton);
 		
-		JButton billUpdateButton = new JButton("UPDATE");
+		JButton billUpdateButton = new JButton("Edit");
 		billUpdateButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				 try {
@@ -186,7 +189,7 @@ public class BillFrame {
 		billUpdateButton.setBounds(278, 232, 89, 23);
 		frame5.getContentPane().add(billUpdateButton);
 		
-		JButton billPreviousButton = new JButton("Previous");
+		JButton billPreviousButton = new JButton("BACK");
 		billPreviousButton.setBounds(23, 288, 89, 23);
 		frame5.getContentPane().add(billPreviousButton);
 		
@@ -216,16 +219,11 @@ public class BillFrame {
 		billCalculateButton.setBounds(278, 131, 108, 23);
 		frame5.getContentPane().add(billCalculateButton);
 		
-		
-		
-
-		
-		
-		
-		
-		
 		billPreviousButton.addActionListener(new ActionListener(){ 
 			public void actionPerformed(java.awt.event.ActionEvent evt){ 
+				
+				frame5.setVisible(false);
+				
 				RoomFrame window4 = new RoomFrame();
 				window4.frame4.setVisible(true);
 			        }

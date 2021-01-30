@@ -13,7 +13,7 @@ public class GuiConnection {
 			
 			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/hospital_managementdb",
 					"root", "argita040317");
-			JOptionPane.showMessageDialog(null, "Connection Successful");
+			JOptionPane.showMessageDialog(null, "Database Connection Successful!");
 			 return connection;
 		 
          } catch (SQLException e) {

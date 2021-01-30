@@ -21,6 +21,7 @@ import net.proteanit.sql.DbUtils;
 import javax.swing.JComboBox;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
+import java.awt.Color;
 
 public class PatientFrame {
 
@@ -34,7 +35,7 @@ public class PatientFrame {
 	private JTable patientTable;
 	private JTextField patientIdTextField;
 	 
-	 Connection connection= null;
+	 Connection connection= null; //initializes the connection with the database
 	
 
 	/**
@@ -58,7 +59,7 @@ public class PatientFrame {
 	 */
 	public PatientFrame() {
 		initialize3();
-		connection= GuiConnection.setGuiConnection();
+		connection= GuiConnection.setGuiConnection();  //creates the connection with the database
 	}
 
 	/**
@@ -66,6 +67,7 @@ public class PatientFrame {
 	 */
 	private void initialize3() {
 		frame3 = new JFrame();
+		frame3.getContentPane().setBackground(new Color(176, 196, 222));
 		frame3.setBounds(100, 100, 692, 382);
 		frame3.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame3.getContentPane().setLayout(null);
@@ -164,7 +166,8 @@ public class PatientFrame {
 		patientTable = new JTable();
 		scrollPane.setViewportView(patientTable);
 		
-		JButton patientInsertButton = new JButton("INSERT");
+		//Create buttons and add ActionListeners
+		JButton patientInsertButton = new JButton("Add");
 		patientInsertButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -194,7 +197,7 @@ public class PatientFrame {
 		patientInsertButton.setBounds(131, 267, 89, 23);
 		frame3.getContentPane().add(patientInsertButton);
 		
-		JButton patientUpdateButton = new JButton("UPDATE");
+		JButton patientUpdateButton = new JButton("Edit");
 		patientUpdateButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				 try {
@@ -225,7 +228,7 @@ public class PatientFrame {
 		patientUpdateButton.setBounds(291, 267, 89, 23);
 		frame3.getContentPane().add(patientUpdateButton);
 		
-		JButton patientDeleteButton = new JButton("DELETE");
+		JButton patientDeleteButton = new JButton("Delete");
 		patientDeleteButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -247,11 +250,11 @@ public class PatientFrame {
 		patientDeleteButton.setBounds(461, 267, 89, 23);
 		frame3.getContentPane().add(patientDeleteButton);
 		
-		JButton patientPreviousButton = new JButton("Previous");
+		JButton patientPreviousButton = new JButton("BACK");
 		patientPreviousButton.setBounds(10, 309, 89, 23);
 		frame3.getContentPane().add(patientPreviousButton);
 		
-		JButton patientNextButton = new JButton("Next");
+		JButton patientNextButton = new JButton("NEXT");
 		patientNextButton.setBounds(577, 309, 89, 23);
 		frame3.getContentPane().add(patientNextButton);
 		
@@ -279,6 +282,9 @@ public class PatientFrame {
 		
 		patientPreviousButton.addActionListener(new ActionListener(){ 
 			public void actionPerformed(java.awt.event.ActionEvent evt){ 
+				
+				frame3.setVisible(false);
+				
 				WelcomeFrame window = new WelcomeFrame();
 				window.frame.setVisible(true);
 			        }
@@ -286,6 +292,9 @@ public class PatientFrame {
 		
 		patientNextButton.addActionListener(new ActionListener(){ 
 			public void actionPerformed(java.awt.event.ActionEvent evt){ 
+				
+				frame3.setVisible(false);
+				
 				RoomFrame window4 = new RoomFrame();
 				window4.frame4.setVisible(true);
 			        }

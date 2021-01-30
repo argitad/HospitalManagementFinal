@@ -21,14 +21,17 @@ import javax.swing.SwingConstants;
 import net.proteanit.sql.DbUtils;
 
 import java.awt.event.ActionEvent;
+import java.awt.Color;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
 
 public class RoomFrame {
 
 	JFrame frame4;
 	private JTextField roomNumberTextField;
-	private JTextField patientNoteTextField;
 	private JTextField patientIdTextField;
-	Connection connection= null;
+	
+	Connection connection= null;  //initializes the connection with the database
 	
 
 	/**
@@ -52,7 +55,7 @@ public class RoomFrame {
 	 */
 	public RoomFrame() {
 		initialize4();
-		connection= GuiConnection.setGuiConnection();
+		connection= GuiConnection.setGuiConnection();  //creates the connection with the database
 	}
 
 	/**
@@ -60,6 +63,7 @@ public class RoomFrame {
 	 */
 	private void initialize4() {
 		frame4 = new JFrame();
+		frame4.getContentPane().setBackground(new Color(176, 196, 222));
 		frame4.setBounds(100, 100, 464, 361);
 		frame4.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame4.getContentPane().setLayout(null);
@@ -106,13 +110,14 @@ public class RoomFrame {
 		statusComboBox.setBounds(132, 142, 86, 22);
 		frame4.getContentPane().add(statusComboBox);
 		
-		
 		patientIdTextField = new JTextField();
 		patientIdTextField.setBounds(132, 198, 86, 20);
 		frame4.getContentPane().add(patientIdTextField);
 		patientIdTextField.setColumns(10);
 		
-		JButton roomPreviousButton = new JButton("Previous");
+		
+		//Create buttons and add ActionListeners
+		JButton roomPreviousButton = new JButton("BACK");
 		roomPreviousButton.setBounds(37, 288, 89, 23);
 		frame4.getContentPane().add(roomPreviousButton);
 		
@@ -120,12 +125,7 @@ public class RoomFrame {
 		roomBillButton.setBounds(223, 288, 188, 23);
 		frame4.getContentPane().add(roomBillButton);
 		
-		patientNoteTextField = new JTextField();
-		patientNoteTextField.setBounds(283, 42, 128, 137);
-		frame4.getContentPane().add(patientNoteTextField);
-		patientNoteTextField.setColumns(10);
-		
-		JButton roomInsertButton = new JButton("INSERT");
+		JButton roomInsertButton = new JButton("Add");
 		roomInsertButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				 try {
@@ -148,10 +148,10 @@ public class RoomFrame {
 			         }
 			}
 		});
-		roomInsertButton.setBounds(102, 241, 89, 23);
+		roomInsertButton.setBounds(172, 241, 89, 23);
 		frame4.getContentPane().add(roomInsertButton);
 		
-		JButton roomUpdateButton = new JButton("UPDATE");
+		JButton roomUpdateButton = new JButton("Edit");
 		roomUpdateButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				 try {
@@ -172,16 +172,14 @@ public class RoomFrame {
 			         }
 			}
 		});
-		roomUpdateButton.setBounds(259, 241, 89, 23);
+		roomUpdateButton.setBounds(307, 241, 89, 23);
 		frame4.getContentPane().add(roomUpdateButton);
-		
-		
-		
-		
 		
 		
 		roomPreviousButton.addActionListener(new ActionListener(){ 
 			public void actionPerformed(java.awt.event.ActionEvent evt){ 
+				
+				frame4.setVisible(false);
 				PatientFrame window3 = new PatientFrame();
 				window3.frame3.setVisible(true);
 			        }
@@ -189,6 +187,8 @@ public class RoomFrame {
 		
 		roomBillButton.addActionListener(new ActionListener(){ 
 			public void actionPerformed(java.awt.event.ActionEvent evt){ 
+				
+				frame4.setVisible(false);
 
 				BillFrame window5 = new BillFrame();
 				window5.frame5.setVisible(true);

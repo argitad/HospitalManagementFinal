@@ -44,34 +44,26 @@ public class WelcomeFrame extends JFrame {
 	 */
 	public WelcomeFrame() {
 		initialize();
-		close();
 		
 	}
 	
-	private void close() {
-		// TODO Auto-generated method stub
-	WindowEvent winClosingEvent= new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
-	Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosingEvent);
-	}
+
 
 	// Initialize the contents of the frame
 	private void initialize() {
-		
-		//First Frame
 		frame = new JFrame();
+		frame.getContentPane().setBackground(new Color(176, 196, 222));
 		frame.setBounds(100, 100, 692, 382);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		// Header Label
-		JLabel headerLabel = new JLabel("HOSPITAL MANAGEMENT SYSTEM");
-		headerLabel.setBounds(0, 11, 676, 33);
-		headerLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 27));
+        JLabel headerLabel = new JLabel("HOSPITAL MANAGEMENT SYSTEM");
+        headerLabel.setBackground(Color.DARK_GRAY);
+		headerLabel.setBounds(0, 22, 676, 33);
+		headerLabel.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 27));
 		headerLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		frame.getContentPane().add(headerLabel);
 		
-		
-	    // Doctor Image Label
 		JLabel doctorImgLabel = new JLabel("");
 		ImageIcon doctor= new ImageIcon("doctor.png");
 		
@@ -79,7 +71,6 @@ public class WelcomeFrame extends JFrame {
 		doctorImgLabel.setIcon(doctor);
 		frame.getContentPane().add(doctorImgLabel);
 		
-	    //Patient Image Label
 		JLabel patientImgLabel = new JLabel("");
 		ImageIcon patient= new ImageIcon("patient.png");
 		
@@ -87,22 +78,26 @@ public class WelcomeFrame extends JFrame {
 		patientImgLabel.setIcon(patient);
 		frame.getContentPane().add(patientImgLabel);
 		
-		JButton doctorButton = new JButton("Continue As Doctor");
+		JButton doctorButton = new JButton("Continue To Doctor");
+		doctorButton.setForeground(Color.DARK_GRAY);
+		doctorButton.setBackground(Color.LIGHT_GRAY);
 		doctorButton.setBounds(97, 247, 178, 33);
 		frame.getContentPane().add(doctorButton);
 		  
-		
-		
-		JButton patientButton = new JButton("Continue As Patient");
+		JButton patientButton = new JButton("Continue To Patient");
+		patientButton.setForeground(Color.DARK_GRAY);
+		patientButton.setBackground(Color.LIGHT_GRAY);
 		patientButton.setBounds(446, 247, 178, 33);
 		frame.getContentPane().add(patientButton);
 	
 	
-		
+	// Add ActionListeners for the buttons	
 	doctorButton.addActionListener(new ActionListener(){ 
 		
 		public void actionPerformed(java.awt.event.ActionEvent evt){ 
-			close();
+			
+			frame.setVisible(false);
+			
 			DoctorFrame window1 = new DoctorFrame();
 			window1.frame1.setVisible(true);
 			
@@ -115,7 +110,9 @@ public class WelcomeFrame extends JFrame {
 	patientButton.addActionListener(new ActionListener(){ 
 		
 		public void actionPerformed(java.awt.event.ActionEvent evt){ 
-			close();
+			
+			frame.setVisible(false);
+
 			PatientFrame window3 = new PatientFrame();
 			window3.frame3.setVisible(true);
 		        }

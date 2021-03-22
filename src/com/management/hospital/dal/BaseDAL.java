@@ -17,7 +17,7 @@ public class BaseDAL {
 	 Connection connection =null;
 	private String url = "jdbc:mysql://localhost:3306/hospital_managementdb";
 	private  String user = "root";
-	private String password = "argita040317";
+	private String password = "argita040";
 	
 	public BaseDAL()  {
 		setConnection();
